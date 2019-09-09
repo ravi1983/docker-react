@@ -1,0 +1,19 @@
+version: '3'
+services:
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - '3000:3000'
+    volumes:
+      - /home/node_modules
+      - .:/home
+  react-test-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /home/node_modules
+      - .:/home
+    command: ['npm', 'run', 'test'] # Override the command from Dockerfile
