@@ -7,3 +7,17 @@ before_install:
 
 script:
   - docker run -e CI=true ravidoc/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: 'docker-react1'
+  env: 'DockerReact1-env'
+  bucket_name: 'elasticbeanstalk-us-east-2-122610191296'
+  bucket_path: 'docker-react1'
+  on:
+    branch: master
+  access_key_id:
+    secure: '$AWS_ACCESS_KEY'
+  secret_access_key:
+    secure: '$AWS_SECRET_KEY'
