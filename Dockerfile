@@ -12,6 +12,9 @@ RUN npm run build
 # Run phase. Each from phase terminates previous block
 FROM nginx
 
+# Used by AWS and opens the port
+EXPOSE 80
+
 # Copy file fropm builder phase container to this container
 COPY --from=builder /home/build /usr/share/nginx/html
 
